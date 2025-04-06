@@ -1,0 +1,22 @@
+{
+  "name": "ghosttyper",
+  "version": "1.0.0",
+  "description": "GhostTyper - Keyboard Ghostwriter: Real-time, inline AI writing suggestions",
+  "scripts": {
+    "start:backend": "cd backend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "install:backend": "cd backend && npm install",
+    "build:extension": "cd extension && zip -r ../ghosttyper-extension.zip *",
+    "test:backend": "cd backend && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chirag127/GhostTyper---Keyboard-Ghostwriter.git"
+  },
+  "author": "Chirag Singhal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chirag127/GhostTyper---Keyboard-Ghostwriter/issues"
+  },
+  "homepage": "https://github.com/chirag127/GhostTyper---Keyboard-Ghostwriter#readme"
+}

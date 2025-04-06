@@ -1,34 +1,34 @@
 # GhostTyper – Keyboard Ghostwriter
 
-GhostTyper is a browser extension that helps users write faster, smarter, and in their **own voice**. By learning the user's writing style from typed input and writing samples, it offers **real-time suggestions**, **auto-replies**, and **rewrites** in their unique tone.
+GhostTyper is a browser extension that provides real-time, inline AI writing suggestions as users type into any form or text input field on the web. Designed like GitHub Copilot but for everyday writing, it mimics the user's personal tone using writing samples and allows users to accept suggestions with a simple press of the **Tab** key.
 
 ## Features
 
--   **Real-Time Writing Suggestions**: Get suggestions as you type that match your writing style
--   **Persona Management**: Create and switch between different writing styles
--   **Writing Sample Analysis**: Upload your writing to train the AI on your style
--   **Text Manipulation**: Rephrase, shorten, or expand text while maintaining your tone
--   **Privacy Modes**: Choose between cloud processing for full features or local-only mode for privacy
+-   **Inline Suggestions**: As you type, GhostTyper generates subtle, gray-colored inline suggestions that can be accepted with the `Tab` key or dismissed with `Esc`.
+-   **Tone Matching**: GhostTyper uses your previous writing samples to match your tone, making suggestions feel natural and consistent with your style.
+-   **Universal Input Support**: Works across all websites including Gmail, Twitter, LinkedIn, and more.
+-   **Customizable Settings**: Toggle the extension on/off, upload writing samples, set tone preferences, and manage your data.
 
 ## Project Structure
 
 The project consists of two main components:
 
-### Browser Extension (Chrome)
+### Browser Extension
 
--   **Manifest V3** compliant Chrome extension
--   Detects input fields and monitors typing
--   Displays ghost text suggestions
--   Provides context menu options for text manipulation
--   Manages user settings and personas
+-   **Manifest V3** compliant browser extension
+-   **contentScript.js**: Detects text inputs and handles suggestions
+-   **suggestionOverlay.js**: Renders inline suggestions
+-   **keyboardHandler.js**: Handles keyboard events for accepting/rejecting suggestions
+-   **popup.html/js**: Provides the settings UI
+-   Cross-browser compatibility with **webextension-polyfill**
 
 ### Backend Server
 
 -   **Express.js** REST API
--   Handles writing sample analysis
--   Generates text suggestions
--   Manages user profiles and personas
--   Integrates with Google's Gemini API for AI text generation
+-   **MongoDB** for storing user tone profiles
+-   **Gemini 2.0 Flash Lite** integration for AI-powered text generation
+-   Tone analysis for matching user's writing style
+-   Suggestion generation based on user's input and tone
 
 ## Installation
 
@@ -40,43 +40,53 @@ The project consists of two main components:
 
 ### Backend Setup
 
-1. Navigate to the backend directory:
+1. Clone this repository:
 
     ```
-    cd backend
+    git clone https://github.com/chirag127/GhostTyper---Keyboard-Ghostwriter.git
+    cd GhostTyper---Keyboard-Ghostwriter
     ```
 
-2. Install dependencies:
+2. Install backend dependencies:
 
     ```
-    npm install
+    npm run install:backend
     ```
 
-3. Create a `.env` file based on `.env.example`:
+3. Configure the backend:
 
-    ```
-    cp .env.example .env
-    ```
+    - Create a `.env` file in the `backend` directory with the following variables:
+        ```
+        PORT=3000
+        MONGO_URI=mongodb://localhost:27017/ghosttyper
+        GEMINI_API_KEY=your-gemini-api-key
+        ```
 
-4. Edit the `.env` file with your MongoDB URI and Gemini API key.
-
-5. Start the server:
+4. Start the server:
     ```
-    npm start
+    npm run start:backend
     ```
 
 ### Extension Setup
 
-1. Navigate to the extension directory:
+1. Load the extension in your browser:
 
-    ```
-    cd extension
-    ```
+    - **Chrome**:
 
-2. Load the extension in Chrome:
-    - Open Chrome and go to `chrome://extensions/`
-    - Enable "Developer mode"
-    - Click "Load unpacked" and select the `extension` directory
+        - Go to `chrome://extensions/`
+        - Enable "Developer mode"
+        - Click "Load unpacked"
+        - Select the `extension` folder
+
+    - **Firefox**:
+
+        - Go to `about:debugging#/runtime/this-firefox`
+        - Click "Load Temporary Add-on"
+        - Select any file in the `extension` folder
+
+    - **Safari**:
+        - Use Safari Web Extension Converter to convert the extension
+        - Follow the prompts to install the extension
 
 ## Usage
 
@@ -86,11 +96,9 @@ The project consists of two main components:
 
 3. **Get Suggestions**: Start typing in any text field on the web, and GhostTyper will suggest completions based on your style.
 
-4. **Accept Suggestions**: Press Tab to accept a suggestion, or continue typing to ignore it.
+4. **Accept Suggestions**: Press Tab to accept a suggestion, or press Esc to dismiss it.
 
-5. **Manipulate Text**: Highlight text and right-click to access options for rephrasing, shortening, or expanding.
-
-6. **Switch Personas**: Create different personas for different writing contexts (formal, casual, etc.) and switch between them.
+5. **Adjust Settings**: Change tone preferences (casual, professional, etc.) in the extension popup.
 
 ## Development
 
@@ -99,44 +107,42 @@ The project consists of two main components:
 The extension is built with vanilla JavaScript, HTML, and CSS. Key files:
 
 -   `manifest.json`: Extension configuration
--   `background.js`: Service worker for background tasks
--   `content.js`: Content script for interacting with web pages
--   `popup.html/js/css`: UI for the extension popup
+-   `contentScript.js`: Detects text inputs and handles suggestions
+-   `suggestionOverlay.js`: Renders inline suggestions
+-   `keyboardHandler.js`: Handles keyboard events
+-   `popup.html/js`: UI for the extension popup
+-   `env.js`: Configuration variables
 
 ### Backend Development
 
 The backend is built with Express.js and MongoDB. Key files:
 
 -   `server.js`: Main entry point
--   `routes/api.js`: API route definitions
--   `controllers/`: Business logic
--   `models/`: MongoDB models
--   `services/geminiService.js`: Gemini API integration
+-   `routes/`: API route definitions (generate.js, sample.js, userTone.js)
+-   `services/`: Business logic (geminiService.js, toneAnalyzer.js)
+-   `models/`: MongoDB models (UserTone.js)
+-   `config.js`: Configuration settings
 
 ## API Documentation
 
-### User Management
+### Suggestion Generation
 
--   `POST /api/users`: Create a new user
--   `GET /api/users/:id`: Get user by ID
--   `PUT /api/users/:id`: Update user
-
-### Persona Management
-
--   `POST /api/personas`: Create a new persona
--   `GET /api/personas`: Get all personas
--   `PUT /api/personas/:id`: Update a persona
--   `DELETE /api/personas/:id`: Delete a persona
+-   `POST /generate`: Generate text suggestions
+    -   Request body: `{ text, userToneId, tonePreference }`
+    -   Response: `{ success, suggestion }`
 
 ### Writing Samples
 
--   `POST /api/style/train`: Add a writing sample
--   `GET /api/style/samples/:personaId`: Get writing samples for a persona
+-   `POST /sample`: Upload a writing sample for tone analysis
+    -   Request body: `{ text, userToneId }`
+    -   Response: `{ success, userToneId, message }`
 
-### Text Generation
+### User Tone Profiles
 
--   `POST /api/suggest`: Get text suggestion
--   `POST /api/rephrase`: Rephrase text
+-   `GET /user-tone/:id`: Get a user's tone profile
+    -   Response: `{ success, toneProfile }`
+-   `DELETE /user-tone/:id`: Delete a user's tone profile
+    -   Response: `{ success, message }`
 
 ## License
 
@@ -144,6 +150,7 @@ MIT
 
 ## Credits
 
--   Google Generative AI (Gemini) for text generation
+-   [Gemini 2.0 Flash Lite](https://ai.google.dev/gemini-api/docs) for AI-powered text generation
+-   [webextension-polyfill](https://github.com/mozilla/webextension-polyfill) for cross-browser compatibility
 -   MongoDB for data storage
 -   Express.js for the backend framework
