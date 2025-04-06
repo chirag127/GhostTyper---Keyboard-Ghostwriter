@@ -3,18 +3,18 @@
  */
 const ENV = {
   // API base URL - change this to your production API URL when deploying
-  API_BASE_URL: 'http://localhost:3000',
-  
+  // API_BASE_URL: 'http://localhost:3000',
+  API_BASE_URL: 'https://ghosttyper-keyboard-ghostwriter.onrender.com', // Production URL
   // Endpoints
   ENDPOINTS: {
     GENERATE: '/generate',
     SAMPLE: '/sample',
     USER_TONE: '/user-tone'
   },
-  
+
   // Debounce delay for API calls (in milliseconds)
   DEBOUNCE_DELAY: 300,
-  
+
   // Default settings
   DEFAULT_SETTINGS: {
     enabled: true,
