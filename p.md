@@ -198,11 +198,7 @@ async function run() {
     history: [],
   });
 
-  const prompt = `
-    You are GhostTyper, an assistant that mimics the user's tone and style.
-    Based on this writing style: "Hey there! Just wanted to check in on the plan 😊"
-    Suggest the next sentence for this ongoing message: "Hey team, just wanted to"
-  `;
+  const prompt = `input prompt here`;
 
   const result = await chatSession.sendMessage(prompt);
 
@@ -232,30 +228,4 @@ run();
 
 ---
 
-### 🧠 How It Works in GhostTyper
-- **Input to Gemini**:
-  - Current text in the input field
-  - Stored user writing sample (persona style)
-  - Action type (e.g., suggest next phrase, rephrase, shorten)
-
-- **Prompt Template (backend)**:
-```js
-`You are a ghostwriting assistant. Based on this writing sample: "${writingSample}"
-and the current message: "${currentInput}", suggest what the user is likely to write next, in a similar tone.`
-```
-
-- **Returned Output**:
-  Clean string (the next few words or rewritten version) sent back to the extension.
-
----
-
-### 🛠️ Best Practices
-- Use **persona metadata** in prompts for different tones.
-- Cap generations at ~100 tokens for in-field suggestions.
-- Rate-limit API calls to avoid latency or quota overruns.
-- Add retries and fallbacks to cached styles for offline mode.
-
----
-
 the user prefers that you do not wait for the user to confirm the detailed plan. My github username is chirag127. Use the web search if any help is needed in the implementation of this browser extension. Also use the web search extensively. Also use the sequential thinking mcp server wherever possible. The code should be written in a modular way and should be easy to understand. The code should be well documented and should follow the best practices of coding. The code should be written in a way that it can be easily extended in the future. The code should be written in a way that it can be easily tested. The code should be written in a way that it can be easily debugged. The code should be written in a way that it can be easily maintained. The code should be written in a way that it can be easily deployed. The code should be written in a way that it can be easily integrated with other systems. use web search if you think you don't know anything.
-
