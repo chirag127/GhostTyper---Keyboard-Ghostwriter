@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/chirag127/GhostTyper---Keyboard-Ghostwriter/issues"
   },
-  "homepage": "https://github.com/chirag127/GhostTyper---Keyboard-Ghostwriter#readme"
+  "homepage": "https://github.com/chirag127/GhostTyper---Keyboard-Ghostwriter#readme",
+  "dependencies": {
+    "sharp": "^0.34.1"
+  }
 }

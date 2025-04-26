@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GhostTyper Settings</title>
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+  <div class="container settings-container">
+    <div class="header">
+      <h1>GhostTyper Settings</h1>
+    </div>
+    
+    <div class="settings-section">
+      <h2>API Key</h2>
+      <p class="description">Enter your Google Gemini API key below. <a href="https://aistudio.google.com/app/apikey" target="_blank">Get a key</a></p>
+      <div class="api-key-container">
+        <input type="password" id="apiKeyInput" placeholder="Enter your Gemini API key">
+        <button id="showApiKeyButton" class="icon-button">👁️</button>
+      </div>
+      <div id="apiKeyStatus" class="status-message"></div>
+    </div>
+    
+    <div class="settings-section">
+      <h2>Site Blacklist</h2>
+      <p class="description">Enter website domains to disable GhostTyper (one per line)</p>
+      <textarea id="blacklistInput" placeholder="example.com&#10;another-site.com"></textarea>
+    </div>
+    
+    <div class="settings-section">
+      <h2>Suggestion Delay</h2>
+      <p class="description">Adjust how long to wait after typing before showing suggestions</p>
+      <div class="delay-container">
+        <input type="range" id="delaySlider" min="300" max="1500" step="100">
+        <span id="delayValue">500ms</span>
+      </div>
+    </div>
+    
+    <div class="button-container">
+      <button id="saveButton" class="primary-button">Save Settings</button>
+      <button id="backButton" class="secondary-button">Back</button>
+    </div>
+  </div>
+  <script src="js/settings.js"></script>
+</body>
+</html>
