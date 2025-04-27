@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GhostTyper</title>
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <img src="assets/ghost-logo.svg" alt="GhostTyper Logo" class="logo">
+      <h1>GhostTyper</h1>
+    </div>
+    
+    <div class="content">
+      <div class="toggle-container">
+        <label class="toggle-label">
+          <span>Enable GhostTyper</span>
+          <div class="toggle">
+            <input type="checkbox" id="enableToggle">
+            <span class="toggle-slider"></span>
+          </div>
+        </label>
+      </div>
+      
+      <div class="status-container">
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span class="status-text">Active</span>
+        </div>
+      </div>
+      
+      <div class="api-key-status">
+        <span class="api-key-indicator"></span>
+        <span class="api-key-text">API Key: </span>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <a href="settings.html" class="settings-link">Settings</a>
+    </div>
+  </div>
+  
+  <script src="js/popup.js" type="module"></script>
+</body>
+</html>

@@ -71,9 +71,9 @@ ghosttyper/
         - Click "Load Temporary Add-on"
         - Select any file in the `extension` folder
 
-### Backend Setup (Optional)
+### Backend Setup
 
-The backend server is not required for V1 functionality but is included as a foundation for future features.
+The backend server is required for the extension to function properly, as it handles the Gemini API integration.
 
 1. Navigate to the backend directory:
 
@@ -87,7 +87,13 @@ The backend server is not required for V1 functionality but is included as a fou
     npm install
     ```
 
-3. Start the server:
+3. Create a `.env` file based on `.env.example`:
+
+    ```
+    cp .env.example .env
+    ```
+
+4. Start the server:
     ```
     npm start
     ```
@@ -123,13 +129,23 @@ node generate-icons.js
 cd extension && zip -r ../ghosttyper-extension.zip *
 ```
 
+### Features Implemented
+
+-   **Browser Extension**: Chrome extension with Manifest V3 support
+-   **Backend Service**: Node.js/Express backend for Gemini API integration
+-   **Real-time Suggestions**: Inline, popup, or panel display modes
+-   **Customizable Settings**: API key management, site filtering, trigger delay
+-   **Keyboard Shortcuts**: Tab to accept, Esc to dismiss
+-   **Anonymous Telemetry**: Basic usage statistics collection
+-   **Security**: HTTPS communication, local API key storage, XSS protection
+
 ### Future Enhancements
 
--   Support for additional browsers
--   More sophisticated context gathering
--   User accounts and settings synchronization (via backend)
--   Centralized API key management (via backend)
--   Opt-in anonymous telemetry for usage statistics (via backend)
+-   Support for additional browsers (Firefox, Edge, Safari)
+-   More sophisticated context gathering for better suggestions
+-   User accounts and settings synchronization
+-   Centralized API key management
+-   Advanced telemetry and analytics dashboard
 
 ## License
 

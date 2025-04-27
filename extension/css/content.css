@@ -1,0 +1,72 @@
+/* Content Styles for GhostTyper */
+
+/* Inline Suggestion */
+.ghosttyper-inline-suggestion {
+  color: #999;
+  pointer-events: none;
+  z-index: 9999;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Popup Suggestion */
+.ghosttyper-popup-suggestion {
+  position: absolute;
+  z-index: 9999;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Panel Suggestion */
+.ghosttyper-panel-suggestion {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+.ghosttyper-panel-header {
+  padding: 8px 12px;
+  background-color: #4285F4;
+  color: white;
+  font-weight: 500;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.ghosttyper-panel-content {
+  padding: 12px;
+  flex: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.ghosttyper-panel-footer {
+  padding: 8px 12px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+  font-size: 12px;
+  color: #666;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}

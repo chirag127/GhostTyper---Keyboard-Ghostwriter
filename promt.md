@@ -140,9 +140,8 @@ The agent should ensure that the browser extension is built with the following s
 -   Project Structure:
     -   extension/ folder for browser extension code.
     -   backend/ folder for the backend code for the AI model integration.
-
-    -   ensure the backend is designed to handle AI model requests efficiently.
-    -   ensure the backend is designed to handle AI model requests efficiently.
+    -   Use Google Gemini AI model for generating suggestions.
+    -   use mongodb for the backend database.
     -   ensure the extension is built with a focus on user experience and performance.
     -   ensure the backend is designed to handle AI model requests efficiently.
     -   Don't leave anything for future, this will be a prd for final product not a mvp.
