@@ -7,6 +7,7 @@ GhostTyper is a browser extension that provides real-time, inline AI writing sug
 ## Features
 
 -   **Inline Suggestions**: As you type, GhostTyper generates subtle, gray-colored inline suggestions that can be accepted with the `Tab` key or dismissed with `Esc`.
+-   **Multiple Display Modes**: Choose between inline suggestions, popup suggestions, or a sidebar display.
 -   **Universal Input Support**: Works across all websites in standard text input fields.
 -   **Customizable Settings**: Toggle the extension on/off, set your API key, blacklist specific sites, and adjust the suggestion delay.
 -   **Privacy-Focused**: Your API key is stored locally, and the extension automatically disables itself in password fields.
@@ -15,18 +16,23 @@ GhostTyper is a browser extension that provides real-time, inline AI writing sug
 ## Project Structure
 
 ```
-extension/
-├── assets/            # Icons and images
-├── css/               # Stylesheets
-├── js/                # JavaScript files
-│   ├── background.js  # Background service worker
-│   ├── content.js     # Content script for text fields
-│   ├── popup.js       # Popup UI logic
-│   ├── settings.js    # Settings page logic
-│   └── utils.js       # Utility functions
-├── manifest.json      # Extension manifest
-├── popup.html         # Popup UI
-└── settings.html      # Settings page
+ghosttyper/
+├── extension/         # Chrome extension (Manifest V3)
+│   ├── assets/        # Icons and images
+│   ├── css/           # Stylesheets
+│   ├── js/            # JavaScript files
+│   │   ├── background.js  # Background service worker
+│   │   ├── content.js     # Content script for text fields
+│   │   ├── popup.js       # Popup UI logic
+│   │   └── settings.js    # Settings page logic
+│   ├── manifest.json  # Extension manifest
+│   ├── popup.html     # Popup UI
+│   └── settings.html  # Settings page
+│
+├── backend/           # Express.js server (for future features)
+│   ├── models/        # Data models
+│   ├── routes/        # API routes
+│   └── server.js      # Main server file
 ```
 
 ## Installation
@@ -37,7 +43,21 @@ extension/
 
 ### Extension Setup
 
-1. Load the extension in your browser:
+1. Clone this repository:
+
+    ```
+    git clone https://github.com/chirag127/GhostTyper---Keyboard-Ghostwriter.git
+    cd GhostTyper---Keyboard-Ghostwriter
+    ```
+
+2. Generate the extension icons:
+
+    ```
+    npm install
+    node generate-icons.js
+    ```
+
+3. Load the extension in your browser:
 
     - **Chrome**:
 
@@ -46,15 +66,31 @@ extension/
         - Click "Load unpacked"
         - Select the `extension` folder
 
-    - **Firefox**:
-
+    - **Firefox** (experimental):
         - Go to `about:debugging#/runtime/this-firefox`
         - Click "Load Temporary Add-on"
         - Select any file in the `extension` folder
 
-    - **Safari**:
-        - Use Safari Web Extension Converter to convert the extension
-        - Follow the prompts to install the extension
+### Backend Setup (Optional)
+
+The backend server is not required for V1 functionality but is included as a foundation for future features.
+
+1. Navigate to the backend directory:
+
+    ```
+    cd backend
+    ```
+
+2. Install dependencies:
+
+    ```
+    npm install
+    ```
+
+3. Start the server:
+    ```
+    npm start
+    ```
 
 ## Usage
 
@@ -66,24 +102,34 @@ extension/
 
 4. **Accept Suggestions**: Press `Tab` to accept a suggestion, or press `Esc` to dismiss it.
 
-5. **Customize Settings**: Adjust the suggestion delay or blacklist specific websites in the Settings page.
+5. **Customize Settings**: Adjust the suggestion delay, change the presentation mode, or blacklist specific websites in the Settings page.
 
 ## Privacy & Security
 
--   Your API key is stored locally in your browser using `chrome.storage.sync`.
+-   Your API key is stored locally in your browser using `chrome.storage.local`.
 -   The extension automatically disables itself in password fields.
 -   You can blacklist specific websites where you don't want suggestions to appear.
 -   No data is collected or stored by the extension beyond what's needed for its functionality.
 
 ## Development
 
-### Building
+### Building the Extension
 
-To build the extension for distribution:
+To package the extension for distribution:
 
-1. Install dependencies: `npm install`
-2. Generate icons: `node generate-icons.js`
-3. Package the extension: `cd extension && zip -r ../ghosttyper-extension.zip *`
+```
+npm install
+node generate-icons.js
+cd extension && zip -r ../ghosttyper-extension.zip *
+```
+
+### Future Enhancements
+
+-   Support for additional browsers
+-   More sophisticated context gathering
+-   User accounts and settings synchronization (via backend)
+-   Centralized API key management (via backend)
+-   Opt-in anonymous telemetry for usage statistics (via backend)
 
 ## License
 
@@ -92,3 +138,4 @@ MIT
 ## Credits
 
 -   [Google Gemini API](https://ai.google.dev/gemini-api/docs) for AI-powered text generation
+-   Developed by [Chirag Singhal](https://github.com/chirag127)
