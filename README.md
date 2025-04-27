@@ -136,8 +136,9 @@ cd extension && zip -r ../ghosttyper-extension.zip *
 -   **Real-time Suggestions**: Inline, popup, or panel display modes
 -   **Customizable Settings**: API key management, site filtering, trigger delay
 -   **Keyboard Shortcuts**: Tab to accept, Esc to dismiss
--   **Anonymous Telemetry**: Basic usage statistics collection
+-   **Anonymous Telemetry**: Basic usage statistics collection with MongoDB storage
 -   **Security**: HTTPS communication, local API key storage, XSS protection
+-   **Database Integration**: MongoDB for persistent storage of telemetry data
 
 ### Future Enhancements
 

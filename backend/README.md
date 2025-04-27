@@ -1,20 +1,22 @@
 # GhostTyper Backend
 
-This is the backend service for the GhostTyper browser extension. It provides API endpoints for generating text suggestions using the Google Gemini API and collecting anonymous telemetry data.
+This is the backend service for the GhostTyper browser extension. It provides API endpoints for generating text suggestions using the Google Gemini API and collecting anonymous telemetry data with MongoDB storage.
 
 ## Features
 
-- **Suggestion Generation**: Generates text suggestions using the Google Gemini API
-- **Telemetry Collection**: Collects anonymous telemetry data for tracking usage
-- **Security**: Implements CORS, rate limiting, and other security measures
-- **API Key Handling**: Never stores user API keys, only uses them for the duration of the request
+-   **Suggestion Generation**: Generates text suggestions using the Google Gemini API
+-   **Telemetry Collection**: Collects anonymous telemetry data for tracking usage with MongoDB storage
+-   **Security**: Implements CORS, rate limiting, and other security measures
+-   **API Key Handling**: Never stores user API keys, only uses them for the duration of the request
+-   **Database Integration**: Uses MongoDB for persistent storage of telemetry data
 
 ## Setup
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm (v6 or higher)
+-   Node.js (v14 or higher)
+-   npm (v6 or higher)
+-   MongoDB (v4.4 or higher)
 
 ### Installation
 
@@ -58,8 +60,8 @@ Generate a text suggestion based on the provided context using the user's Gemini
 
 ```json
 {
-  "context": "The text context to generate suggestions from",
-  "apiKey": "The user's Gemini API key"
+    "context": "The text context to generate suggestions from",
+    "apiKey": "The user's Gemini API key"
 }
 ```
 
@@ -77,8 +79,8 @@ Record telemetry data.
 
 ```json
 {
-  "suggestionsShown": 10,
-  "suggestionsAccepted": 5
+    "suggestionsShown": 10,
+    "suggestionsAccepted": 5
 }
 ```
 
@@ -86,8 +88,8 @@ Record telemetry data.
 
 ```json
 {
-  "suggestionsShown": 100,
-  "suggestionsAccepted": 50
+    "suggestionsShown": 100,
+    "suggestionsAccepted": 50
 }
 ```
 
@@ -97,14 +99,14 @@ Get daily telemetry data.
 
 **Query Parameters:**
 
-- `date`: The date to get data for (YYYY-MM-DD format)
+-   `date`: The date to get data for (YYYY-MM-DD format)
 
 **Response:**
 
 ```json
 {
-  "suggestionsShown": 100,
-  "suggestionsAccepted": 50
+    "suggestionsShown": 100,
+    "suggestionsAccepted": 50
 }
 ```
 
@@ -116,21 +118,21 @@ Get all telemetry data.
 
 ```json
 {
-  "daily": {
-    "2023-10-27": {
-      "suggestionsShown": 100,
-      "suggestionsAccepted": 50
+    "daily": {
+        "2023-10-27": {
+            "suggestionsShown": 100,
+            "suggestionsAccepted": 50
+        }
     }
-  }
 }
 ```
 
 ## Security
 
-- CORS is configured to only allow requests from the GhostTyper extension
-- Rate limiting is implemented to prevent abuse
-- API keys are never stored or logged
-- Helmet is used to set security headers
+-   CORS is configured to only allow requests from the GhostTyper extension
+-   Rate limiting is implemented to prevent abuse
+-   API keys are never stored or logged
+-   Helmet is used to set security headers
 
 ## License
 
